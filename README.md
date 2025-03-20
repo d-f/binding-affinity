@@ -2,5 +2,4 @@
 
 ```determine_bond_types.py``` determines which bond types are present within the dataset for nomalization purposes
 
-```train_affinity_gat.py``` the protein LLM embeddings are contatenated to each atomic feature for every atom in a ligand molecule graph and this script trains a GAT model to predict binding affinity.
-
+```train_models.py``` allows for training a pure GAT or a combination of a GAT and Transformer depending on what is set for the model_type parameter. If a pure GAT is used, protein LLM embeddings are concatenated to atomic features when creating a ligand molecule graph and the graph is used for whole graph regression. If a combination of transformer and GAT is used, the GAT will be used to embed the graph, and a transformer will predict the binding affinity between the protein embedding and embedded ligand graph.
