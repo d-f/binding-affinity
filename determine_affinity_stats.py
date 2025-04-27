@@ -12,7 +12,7 @@ def parse_cla():
     parses command-line arguments
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("-save_filepath", type=str, default="C:\\personal_ML\\binding_affinity_prediction\\ds_stats.json")
+    parser.add_argument("-save_filepath", type=str)
     return parser.parse_args()
 
 
