@@ -14,8 +14,8 @@ def parse_cla():
     process command line arguments
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("-stat_json_path", type=str, default="C:\\personal_ML\\binding_affinity_prediction\\ds_stats.json")
-    parser.add_argument("-save_dir", type=Path, default=Path("C:\\personal_ML\\binding_affinity_prediction\\processed\\"))
+    parser.add_argument("-stat_json_path", type=str)
+    parser.add_argument("-save_dir", type=Path)
     return parser.parse_args()
 
 
