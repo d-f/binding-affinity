@@ -52,7 +52,7 @@ def load_chemberta(device):
     return mol_model, mol_tokenizer
 
 
-class AffinityDataset(torch.utils.data.Dataset):
+class HFDataset(torch.utils.data.Dataset):
     def __init__(self, dataset):
         self.dataset = dataset
 
@@ -97,7 +97,7 @@ def main():
     entire_dataset = load_dataset("jglaser/binding_affinity", split="train[:10%]")
 
     # load DataLoader
-    affinity_ds = AffinityDataset(dataset=entire_dataset)
+    affinity_ds = HFDataset(dataset=entire_dataset)
     affinity_dl = DataLoader(affinity_ds, batch_size=20, shuffle=False)
 
     # keep track of a file_counter for file naming purposes
