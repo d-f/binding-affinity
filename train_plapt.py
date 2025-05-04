@@ -34,7 +34,7 @@ def parse_cla():
     # amount of epochs to train past the model not improving on evaluation loss
     parser.add_argument("-patience", type=int, default=5)
     # if true, training will resume from latest epoch saved, otherwise 
-    parser.add_argument("-resume", type=bool, default=True)
+    parser.add_argument("-resume", type=bool, action="store_true")
     # size of the hidden state of the protein embedding layer
     parser.add_argument("-prot_hidden", type=int, default=512)
     # size of the hidden state of the ligand embedding layer
