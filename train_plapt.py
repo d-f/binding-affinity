@@ -26,7 +26,7 @@ def parse_cla():
     # learning rate: the proportion of the gradient that is used for parameter updates
     parser.add_argument("-lr", type=float, default=1e-3)
     # total number, including epochs that have alrady been trained
-    parser.add_argument("-num_epochs", type=int, default=8)
+    parser.add_argument("-num_epochs", type=int, default=3)
     # folder to save model and performance to
     parser.add_argument("-result_folder", type=Path)
     # name of the model file
@@ -148,8 +148,8 @@ def eval(
             # add loss form batch
             eval_loss += loss_val.item()
 
-            pred += [x.item() for x in aff]
-            ground_truth += [x.item() for x in score]
+            pred += [x.item() for x in score]
+            ground_truth += [x.item() for x in aff]
 
         # average loss by the number of batches
         eval_loss /= len(data_loader)
