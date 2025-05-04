@@ -1,5 +1,19 @@
-```process_dataset.py``` processes the PDBBind dataset through the deepchem library. It will embed the sequence of amino acid abbreviations with a Protein LLM, convert the rdkit Molecule objects into torch_geometric graphs and saves the binding affinity each in separate directories. 
+To determine the mean and standard deviation of dataset features:
+```
+python determine_affinity_stats.py -save_filepath /affinity/ds_stats.json
+```
 
-```determine_bond_types.py``` determines which bond types are present within the dataset for nomalization purposes
+To partition the dataset into training, validation and test partitions:
+```
+python partition_dataset.py -data_folder /affinity/processed/ -save_folder /affinity/
+```
 
-```train_models.py``` allows for training a pure GAT or a combination of a GAT and Transformer depending on what is set for the model_type parameter. If a pure GAT is used, protein LLM embeddings are concatenated to atomic features when creating a ligand molecule graph and the graph is used for whole graph regression. If a combination of transformer and GAT is used, the GAT will be used to embed the graph, and a transformer will predict the binding affinity between the protein embedding and embedded ligand graph.
+To embed the dataset proteins with ProtBERT and dataset ligands with ChemBERTa:
+```
+python process_plapt_ds.py -stat_json_path /affinity/ds_stats.json -save_dir /affinity/processed/
+```
+
+To train a PLAPT model to predict binding affinity:
+```
+python train_plapt.py -data_folder /affinity/processed/ -csv_folder /affinity/csv/ -batch_size 64 -lr 1e-3 -num_epochs 64 -result_folder /affinity/models/ -model_save_name model_1.pth.tar -patience 5 -prot_hidden 512 -lig_hidden 512
+```
